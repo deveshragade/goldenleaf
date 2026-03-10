@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golden Leaf Resort | Luxury Weddings & Stays in Dhule</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: '#C9A227',
+                        'highlight-gold': '#D4AF37',
+                        'dark-green': '#1E3A2F',
+                        'leaf-green': '#2F5D50',
+                        'soft-olive': '#6B8E23',
+                        'cream': '#F8F6F1',
+                        'beige': '#EFE9DC',
+                        'charcoal': '#2B2B2B',
+                        'dark-footer': '#121212',
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #F8F6F1; }
+        ::-webkit-scrollbar-thumb { background: #C9A227; border-radius: 10px; }
+
+        /* Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hero-zoom {
+            animation: zoomEffect 20s infinite alternate;
+        }
+        @keyframes zoomEffect {
+            from { transform: scale(1); }
+            to { transform: scale(1.1); }
+        }
+
+        .glass-nav {
+            background: rgba(30, 58, 47, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Lightbox Style */
+        #lightbox {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9);
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body class="bg-cream font-sans text-charcoal overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 transition-all duration-300 py-4 glass-nav" id="navbar">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <div class="flex flex-col">
+                <span class="text-gold font-serif text-2xl font-bold leading-none tracking-widest uppercase">Golden Leaf</span>
+                <span class="text-white text-[10px] tracking-[0.3em] uppercase opacity-80">Resort • Dhule</span>
+            </div>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden lg:flex space-x-8 text-white font-medium text-sm uppercase tracking-wider">
+                <a href="#home" class="hover:text-gold transition-colors">Home</a>
+                <a href="#about" class="hover:text-gold transition-colors">About</a>
+                <a href="#highlights" class="hover:text-gold transition-colors">Highlights</a>
+                <a href="#venues" class="hover:text-gold transition-colors">Venues</a>
+                <a href="#gallery" class="hover:text-gold transition-colors">Gallery</a>
+                <a href="#testimonials" class="hover:text-gold transition-colors">Reviews</a>
+                <a href="#contact" class="hover:text-gold transition-colors">Contact</a>
+            </div>
+
+            <a href="#contact" class="hidden lg:block bg-gold hover:bg-highlight-gold text-white px-6 py-2 rounded-sm transition-all transform hover:scale-105 font-semibold text-sm">BOOK NOW</a>
+
+            <!-- Mobile Toggle -->
+            <button class="lg:hidden text-gold text-2xl" id="menuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden lg:hidden bg-dark-green text-white absolute w-full left-0 top-full p-6 flex flex-col space-y-4 text-center border-t border-leaf-green">
+            <a href="#home" class="mobile-link">Home</a>
+            <a href="#about" class="mobile-link">About</a>
+            <a href="#highlights" class="mobile-link">Highlights</a>
+            <a href="#venues" class="mobile-link">Venues</a>
+            <a href="#gallery" class="mobile-link">Gallery</a>
+            <a href="#testimonials" class="mobile-link">Reviews</a>
+            <a href="#contact" class="mobile-link">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <!-- Replace with actual high-res image -->
+            <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&q=80&w=1920" alt="Resort Background" class="w-full h-full object-cover hero-zoom">
+            <div class="absolute inset-0 bg-black/40"></div>
+        </div>
+        
+        <div class="relative z-10 text-center px-4 max-w-4xl">
+            <h1 class="text-4xl md:text-7xl font-serif text-white mb-6 leading-tight reveal">
+                Experience <span class="text-gold italic">Luxury & Nature</span> at Golden Leaf Resort
+            </h1>
+            <p class="text-lg md:text-xl text-white/90 mb-10 reveal font-light tracking-wide">
+                Dhule's premier destination for weddings, luxury stays, and grand celebrations.
+            </p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center reveal">
+                <a href="#contact" class="bg-gold hover:bg-highlight-gold text-white px-10 py-4 rounded-sm transition-all font-bold tracking-widest text-sm shadow-xl">BOOK YOUR STAY</a>
+                <a href="#venues" class="border-2 border-white hover:bg-white hover:text-dark-green text-white px-10 py-4 rounded-sm transition-all font-bold tracking-widest text-sm">EXPLORE VENUES</a>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 text-white animate-bounce">
+            <i class="fas fa-chevron-down text-2xl opacity-50"></i>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-cream">
+        <div class="container mx-auto px-6 lg:flex items-center gap-16">
+            <div class="lg:w-1/2 mb-12 lg:mb-0 reveal">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&q=80&w=800" alt="About Resort" class="rounded-sm shadow-2xl">
+                    <div class="absolute -bottom-6 -right-6 bg-gold p-8 hidden md:block">
+                        <p class="text-white font-serif text-2xl">10+ Years</p>
+                        <p class="text-white/80 text-xs uppercase tracking-widest">Of Hospitality</p>
+                    </div>
+                </div>
+            </div>
+            <div class="lg:w-1/2 reveal">
+                <h6 class="text-gold font-bold tracking-[0.3em] uppercase text-sm mb-4">Our Story</h6>
+                <h2 class="text-4xl md:text-5xl font-serif text-dark-green mb-6">A Perfect Blend of Elegance and Serenity</h2>
+                <p class="text-soft-gray mb-6 leading-relaxed">
+                    Nestled in the heart of Dhule, Golden Leaf Resort is an oasis of tranquility. We specialize in creating unforgettable experiences, whether it's the wedding of your dreams, a corporate retreat, or a peaceful family getaway.
+                </p>
+                <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 text-sm font-medium">
+                    <li class="flex items-center space-x-3 text-leaf-green">
+                        <i class="fas fa-check-circle text-gold"></i> <span>Luxury Guest Suites</span>
+                    </li>
+                    <li class="flex items-center space-x-3 text-leaf-green">
+                        <i class="fas fa-check-circle text-gold"></i> <span>Expansive Wedding Lawns</span>
+                    </li>
+                    <li class="flex items-center space-x-3 text-leaf-green">
+                        <i class="fas fa-check-circle text-gold"></i> <span>Grand Banquet Halls</span>
+                    </li>
+                    <li class="flex items-center space-x-3 text-leaf-green">
+                        <i class="fas fa-check-circle text-gold"></i> <span>Fine Dining Restaurant</span>
+                    </li>
+                </ul>
+                <a href="#venues" class="text-gold font-bold border-b-2 border-gold pb-1 hover:text-highlight-gold transition-all">DISCOVER OUR VENUES</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Highlights Grid -->
+    <section id="highlights" class="py-20 bg-beige">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-serif text-dark-green mb-16 reveal">Resort Highlights</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Highlight Card -->
+                <div class="bg-white p-10 rounded-sm shadow-sm hover:shadow-xl transition-all duration-300 group reveal">
+                    <div class="w-16 h-16 bg-cream rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-gold transition-colors">
+                        <i class="fas fa-bed text-gold group-hover:text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Luxury Rooms</h3>
+                    <p class="text-sm text-soft-gray leading-relaxed">Exquisitely designed rooms with premium amenities for a restful stay.</p>
+                </div>
+                <div class="bg-white p-10 rounded-sm shadow-sm hover:shadow-xl transition-all duration-300 group reveal">
+                    <div class="w-16 h-16 bg-cream rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-gold transition-colors">
+                        <i class="fas fa-tree text-gold group-hover:text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Wedding Lawns</h3>
+                    <p class="text-sm text-soft-gray leading-relaxed">Lush green spaces perfect for grand outdoor celebrations under the stars.</p>
+                </div>
+                <div class="bg-white p-10 rounded-sm shadow-sm hover:shadow-xl transition-all duration-300 group reveal">
+                    <div class="w-16 h-16 bg-cream rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-gold transition-colors">
+                        <i class="fas fa-utensils text-gold group-hover:text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Fine Dining</h3>
+                    <p class="text-sm text-soft-gray leading-relaxed">A culinary journey featuring authentic local and international cuisines.</p>
+                </div>
+                <div class="bg-white p-10 rounded-sm shadow-sm hover:shadow-xl transition-all duration-300 group reveal">
+                    <div class="w-16 h-16 bg-cream rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-gold transition-colors">
+                        <i class="fas fa-building text-gold group-hover:text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Banquet Halls</h3>
+                    <p class="text-sm text-soft-gray leading-relaxed">Spacious, air-conditioned halls for conferences and intimate events.</p>
+                </div>
+                <div class="bg-white p-10 rounded-sm shadow-sm hover:shadow-xl transition-all duration-300 group reveal">
+                    <div class="w-16 h-16 bg-cream rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-gold transition-colors">
+                        <i class="fas fa-users text-gold group-hover:text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Conference Hall</h3>
+                    <p class="text-sm text-soft-gray leading-relaxed">Modern facilities designed for corporate meetings and seminars.</p>
+                </div>
+                <div class="bg-white p-10 rounded-sm shadow-sm hover:shadow-xl transition-all duration-300 group reveal">
+                    <div class="w-16 h-16 bg-cream rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-gold transition-colors">
+                        <i class="fas fa-car text-gold group-hover:text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Free Parking</h3>
+                    <p class="text-sm text-soft-gray leading-relaxed">Ample, secure parking space for all your guests and visitors.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Venues Section -->
+    <section id="venues" class="py-24 bg-cream">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl font-serif text-dark-green mb-4">Our Venues</h2>
+                <p class="text-soft-gray max-w-2xl mx-auto">Choose the perfect setting for your special day. From grand halls to open-air lawns.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Venue 1 -->
+                <div class="group relative overflow-hidden rounded-sm reveal">
+                    <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&q=80&w=1200" alt="Regalia Hall" class="w-full h-[400px] object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark-green via-transparent to-transparent opacity-80"></div>
+                    <div class="absolute bottom-0 left-0 p-8">
+                        <h3 class="text-white text-2xl font-serif mb-2">Regalia Hall</h3>
+                        <p class="text-white/80 text-sm mb-4">Sophisticated indoor venue with crystal chandeliers and luxury seating.</p>
+                        <span class="text-gold font-bold text-xs tracking-widest uppercase">Capacity: 500+ Guests</span>
+                    </div>
+                </div>
+                <!-- Venue 2 -->
+                <div class="group relative overflow-hidden rounded-sm reveal">
+                    <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&q=80&w=1200" alt="Grand Nidhivan Lawn" class="w-full h-[400px] object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark-green via-transparent to-transparent opacity-80"></div>
+                    <div class="absolute bottom-0 left-0 p-8">
+                        <h3 class="text-white text-2xl font-serif mb-2">Grand Nidhivan Lawn</h3>
+                        <p class="text-white/80 text-sm mb-4">An expansive outdoor green paradise for majestic wedding ceremonies.</p>
+                        <span class="text-gold font-bold text-xs tracking-widest uppercase">Capacity: 1500+ Guests</span>
+                    </div>
+                </div>
+                <!-- Venue 3 -->
+                <div class="group relative overflow-hidden rounded-sm reveal">
+                    <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=1200" alt="Sapphire Hall" class="w-full h-[400px] object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark-green via-transparent to-transparent opacity-80"></div>
+                    <div class="absolute bottom-0 left-0 p-8">
+                        <h3 class="text-white text-2xl font-serif mb-2">Sapphire Hall</h3>
+                        <p class="text-white/80 text-sm mb-4">A modern hall designed for corporate events and private parties.</p>
+                        <span class="text-gold font-bold text-xs tracking-widest uppercase">Capacity: 200 Guests</span>
+                    </div>
+                </div>
+                <!-- Venue 4 -->
+                <div class="group relative overflow-hidden rounded-sm reveal">
+                    <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&q=80&w=1200" alt="Jalsa Party Lawn" class="w-full h-[400px] object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark-green via-transparent to-transparent opacity-80"></div>
+                    <div class="absolute bottom-0 left-0 p-8">
+                        <h3 class="text-white text-2xl font-serif mb-2">Jalsa Party Lawn</h3>
+                        <p class="text-white/80 text-sm mb-4">Vibrant and festive space for sangeet and cocktail evenings.</p>
+                        <span class="text-gold font-bold text-xs tracking-widest uppercase">Capacity: 800 Guests</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-24 bg-beige">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-serif text-dark-green text-center mb-16 reveal">Resort Gallery</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4" id="gallery-grid">
+                <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80&w=800" class="gallery-img w-full h-64 object-cover cursor-pointer rounded-sm hover:opacity-90 transition-all reveal" alt="Resort Exterior">
+                <img src="https://images.unsplash.com/photo-1544124499-58912cbddaad?auto=format&fit=crop&q=80&w=800" class="gallery-img w-full h-64 object-cover cursor-pointer rounded-sm hover:opacity-90 transition-all reveal" alt="Deluxe Room">
+                <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&q=80&w=800" class="gallery-img w-full h-64 object-cover cursor-pointer rounded-sm hover:opacity-90 transition-all reveal" alt="Wedding Setup">
+                <img src="https://images.unsplash.com/photo-1510076857177-7470076d4098?auto=format&fit=crop&q=80&w=800" class="gallery-img w-full h-64 object-cover cursor-pointer rounded-sm hover:opacity-90 transition-all reveal" alt="Poolside">
+                <img src="https://images.unsplash.com/photo-1574936145840-28808d77a0b6?auto=format&fit=crop&q=80&w=800" class="gallery-img w-full h-64 object-cover cursor-pointer rounded-sm hover:opacity-90 transition-all reveal" alt="Reception">
+                <img src="https://images.unsplash.com/photo-1551882547-ff43c63fedfe?auto=format&fit=crop&q=80&w=800" class="gallery-img w-full h-64 object-cover cursor-pointer rounded-sm hover:opacity-90 transition-all reveal" alt="Hotel Hallway">
+                <img src="https://images.unsplash.com/photo-1590073242678-70ee3fc28e8e?auto=format&fit=crop&q=80&w=800" class="gallery-img w-full h-64 object-cover cursor-pointer rounded-sm hover:opacity-90 transition-all reveal" alt="Buffet Dining">
+                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=800" class="gallery-img w-full h-64 object-cover cursor-pointer rounded-sm hover:opacity-90 transition-all reveal" alt="Lawn Wedding">
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div id="lightbox">
+        <span class="absolute top-10 right-10 text-white text-4xl cursor-pointer" onclick="closeLightbox()">&times;</span>
+        <img id="lightbox-img" src="" class="max-w-[90%] max-h-[80%] rounded-sm shadow-2xl">
+    </div>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="py-24 bg-dark-green text-white overflow-hidden">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-serif mb-16 text-gold reveal">Guest Stories</h2>
+            
+            <div class="relative max-w-3xl mx-auto">
+                <div id="testimonial-slider" class="flex transition-transform duration-500 ease-in-out">
+                    <!-- Slide 1 -->
+                    <div class="w-full flex-shrink-0 px-4">
+                        <div class="text-gold mb-4">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-lg italic mb-8">"An amazing venue for my daughter's wedding. The staff was professional and the Grand Nidhivan lawn looked magical at night."</p>
+                        <div class="flex items-center justify-center space-x-4">
+                            <div class="w-12 h-12 rounded-full bg-leaf-green flex items-center justify-center text-xl font-bold uppercase">RK</div>
+                            <div class="text-left">
+                                <h4 class="font-bold">Rajesh K.</h4>
+                                <p class="text-xs text-white/60">Wedding Client</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="w-full flex-shrink-0 px-4">
+                        <div class="text-gold mb-4">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-lg italic mb-8">"The best resort in Dhule for a weekend getaway. The rooms are spacious and the restaurant serves delicious local food."</p>
+                        <div class="flex items-center justify-center space-x-4">
+                            <div class="w-12 h-12 rounded-full bg-leaf-green flex items-center justify-center text-xl font-bold uppercase">SM</div>
+                            <div class="text-left">
+                                <h4 class="font-bold">Sneha M.</h4>
+                                <p class="text-xs text-white/60">Family Guest</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-cream">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row gap-16">
+                <div class="lg:w-1/2 reveal">
+                    <h2 class="text-4xl font-serif text-dark-green mb-4">Book Your Dream Event Today</h2>
+                    <p class="text-soft-gray mb-10">Fill out the form below, and our event concierge will get back to you shortly.</p>
+                    
+                    <form action="#" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <input type="text" placeholder="Your Name" class="w-full bg-white border border-beige px-6 py-4 rounded-sm focus:outline-none focus:border-gold transition-all">
+                            <input type="tel" placeholder="Phone Number" class="w-full bg-white border border-beige px-6 py-4 rounded-sm focus:outline-none focus:border-gold transition-all">
+                        </div>
+                        <input type="email" placeholder="Email Address" class="w-full bg-white border border-beige px-6 py-4 rounded-sm focus:outline-none focus:border-gold transition-all">
+                        <textarea rows="4" placeholder="Your Message / Event Requirements" class="w-full bg-white border border-beige px-6 py-4 rounded-sm focus:outline-none focus:border-gold transition-all"></textarea>
+                        <button type="submit" class="bg-gold hover:bg-highlight-gold text-white font-bold py-4 px-12 transition-all duration-300 w-full md:w-auto hover:shadow-lg active:scale-95">SEND ENQUIRY</button>
+                    </form>
+                </div>
+                
+                <div class="lg:w-1/2 reveal">
+                    <div class="bg-beige p-8 mb-8 rounded-sm">
+                        <div class="flex items-start space-x-6 mb-8">
+                            <i class="fas fa-map-marker-alt text-gold text-xl mt-1"></i>
+                            <div>
+                                <h4 class="font-bold mb-1">Our Location</h4>
+                                <p class="text-sm text-soft-gray leading-relaxed">Golden Leaf Resort, Mumbai-Agra Highway, Dhule, Maharashtra 424001</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-6">
+                            <i class="fas fa-phone-alt text-gold text-xl mt-1"></i>
+                            <div>
+                                <h4 class="font-bold mb-1">Contact Details</h4>
+                                <p class="text-sm text-soft-gray">+91 98765 43210<br>info@goldenleafresort.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Google Map Placeholder -->
+                    <div class="h-64 bg-gray-200 rounded-sm overflow-hidden grayscale contrast-125">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d119330.3475768565!2d74.7088998!3d20.90422!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bdec57890989345%3A0x868725832a823b1a!2sDhule%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1700000000000" 
+                            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark-footer text-white py-16">
+        <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12">
+            <div class="col-span-1 md:col-span-2">
+                <span class="text-gold font-serif text-3xl font-bold block mb-4">Golden Leaf</span>
+                <p class="text-white/60 max-w-sm mb-6">Creating timeless memories in the heart of Dhule. Experience luxury that stays with you forever.</p>
+                <div class="flex space-x-4">
+                    <a href="#" class="w-10 h-10 border border-white/20 flex items-center justify-center rounded-full hover:bg-gold hover:border-gold transition-all"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="w-10 h-10 border border-white/20 flex items-center justify-center rounded-full hover:bg-gold hover:border-gold transition-all"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="w-10 h-10 border border-white/20 flex items-center justify-center rounded-full hover:bg-gold hover:border-gold transition-all"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            
+            <div>
+                <h4 class="font-bold mb-6 text-gold">Quick Links</h4>
+                <ul class="space-y-4 text-white/60 text-sm">
+                    <li><a href="#about" class="hover:text-white transition-all">About Us</a></li>
+                    <li><a href="#venues" class="hover:text-white transition-all">Venues</a></li>
+                    <li><a href="#gallery" class="hover:text-white transition-all">Gallery</a></li>
+                    <li><a href="#contact" class="hover:text-white transition-all">Reservations</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4 class="font-bold mb-6 text-gold">Contact</h4>
+                <ul class="space-y-4 text-white/60 text-sm">
+                    <li>Mumbai-Agra Highway, Dhule</li>
+                    <li>+91 98765 43210</li>
+                    <li>stay@goldenleaf.com</li>
+                </ul>
+            </div>
+        </div>
+        <div class="container mx-auto px-6 mt-16 pt-8 border-t border-white/10 text-center text-white/40 text-xs">
+            &copy; 2024 Golden Leaf Resort Dhule. Designed for Luxury Excellence.
+        </div>
+    </footer>
+
+    <script>
+        // --- Navbar Scroll Effect ---
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('py-2', 'shadow-2xl');
+                navbar.classList.remove('py-4');
+            } else {
+                navbar.classList.add('py-4');
+                navbar.classList.remove('py-2', 'shadow-2xl');
+            }
+        });
+
+        // --- Mobile Menu Toggle ---
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+        });
+
+        // --- Scroll Reveal Animation ---
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            reveals.forEach(reveal => {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveal.getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveal.classList.add("active");
+                }
+            });
+        }
+        window.addEventListener("scroll", reveal);
+        window.addEventListener("load", reveal); // Run on load
+
+        // --- Gallery Lightbox ---
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        
+        document.querySelectorAll('.gallery-img').forEach(img => {
+            img.addEventListener('click', () => {
+                lightbox.style.display = 'flex';
+                lightboxImg.src = img.src;
+            });
+        });
+
+        function closeLightbox() {
+            lightbox.style.display = 'none';
+        }
+
+        // --- Testimonial Slider ---
+        const slider = document.getElementById('testimonial-slider');
+        let currentSlide = 0;
+        const totalSlides = 2; // Fixed for this example
+
+        function autoSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+        }
+        setInterval(autoSlide, 5000);
+
+        // --- Smooth Scrolling for all links ---
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
